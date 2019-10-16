@@ -8,35 +8,7 @@ public class CrapsGameTest {
 
 	@Test
 	public void sumOfDice() {
-		CrapsGame game = new CrapsGame();
-
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
-		System.out.println(game.sumOfDice());
+		CrapsGame game = new CrapsGame(4);
 
 
 	}
