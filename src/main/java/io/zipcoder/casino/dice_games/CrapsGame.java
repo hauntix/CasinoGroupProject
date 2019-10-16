@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class CrapsGame extends DiceGame{
 
-	CrapsGame() {
+	CrapsGame(int numOfPlayers) {
+		this.setNumOfPlayers(numOfPlayers);
 		this.setNumOfDice(2);
 	}
 
@@ -38,5 +39,13 @@ public class CrapsGame extends DiceGame{
 			if (y == sum)
 				return true;
 		}
+	}
+
+	@Override
+	public void setNumOfPlayers(int numOfPlayers){
+		if(numOfPlayers > 4)
+			throw new Error("Only 4 players can play at a time");
+		else
+			super.setNumOfPlayers(numOfPlayers);
 	}
 }
