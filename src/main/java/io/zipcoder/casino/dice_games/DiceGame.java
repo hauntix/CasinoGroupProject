@@ -10,4 +10,8 @@ public class DiceGame {
 	public int getNumOfDice() {
 		return numOfDice;
 	}
+
+	public boolean rollDice() {
+		return false;
+	}
 }
