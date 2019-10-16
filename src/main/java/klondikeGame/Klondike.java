@@ -8,19 +8,15 @@ import java.util.*;
 
 import static io.zipcoder.casino.players.GamblingPlayers.betAmount;
 
-public class Klondike extends DiceGame {
+public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer {
 
   Klondike() {
     this.setNumOfDice(5);
   }
 
-  Player player = new Player("Bond, James Bond");
-  boolean bankerWins = true;
-  boolean playerWins = true;
-  int placeBet = GamblingPlayers.betAmount;
-  String chooseWin = "Win";
-  String chooseLose = "Lose";
-  String chooseBeatTwoAces = "Beat Two Aces";
+  String bankerWins = "Banker Wins";
+  String playerWins = "You Win";
+  int placeBet = GamblingPlayer.totalAmount;
   List<Integer> list = new ArrayList<Integer>();
   int diceRange = 6 - 1 + 1;
   Random random = new Random();
@@ -42,21 +38,38 @@ public class Klondike extends DiceGame {
     return playerSum;
   }
 
-  public boolean play() {
+  public String play() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Place bet on Win, Lose, or Beat Two Aces");
+    System.out.println("Place bet on Win or Lose");
     String userMarkedBet = scanner.nextLine();
     System.out.println("You placed a bet on " + userMarkedBet);
     System.out.println("Place your bet amount");
-    String userBetAmount = scanner.next();
+    int userBetAmount = scanner.nextInt();
     System.out.println("You bet " + userBetAmount);
-    if (userMarkedBet =  playerRoll() == placeBet) {
-      return bankerWins;
-    } else if ( && playerRoll() < bankerRoll()) {
-      return playerWins;
-    } else if (playerRoll() > bankerRoll()) {
-      return playerWins;
+    while (totalAmount > 0){
+      if (totalAmount < userBetAmount){
+        System.out.println("You don't have enough fucking money");
+        break;
+      }
     }
-    return bankerWins;
+    if (userMarkedBet.contains("Win") && playerRoll() > bankerRoll()) {
+      return "Congrats you win " + (betAmount + totalAmount);
+      return playerWins;
+    } else if(userMarkedBet.contains("Win") && playerRoll() < bankerRoll()){
+      return "Nope, try again, you lost " + betAmount + "and have " + totalAmount + " left.";
+      return bankerWins;
+    } else if (userMarkedBet.contains("Lose") && playerRoll() < bankerRoll()) {
+      return "Congrats you win " + (betAmount + totalAmount);
+      return playerWins;
+    } else if (userMarkedBet.contains("Lose") && playerRoll() > bankerRoll()){
+      return "Nope, try again, you lost " + betAmount + "and have " + totalAmount + " left.";
+      return bankerWins;
+    } else if (playerRoll() == bankerRoll() ) {
+      return "Nope, try again, you lost " + betAmount + "and have " + totalAmount + " left.";
+      return bankerWins;
+    } else {
+      return "Thanks for playing";
+    }
+
   }
 }
