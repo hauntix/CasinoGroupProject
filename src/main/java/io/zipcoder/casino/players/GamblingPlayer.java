@@ -1,6 +1,6 @@
 package io.zipcoder.casino.players;
 
-public interface GamblingPlayers {
+public interface GamblingPlayer {
   int totalAmount = 0;
 
   void placeBet(int betAmount);

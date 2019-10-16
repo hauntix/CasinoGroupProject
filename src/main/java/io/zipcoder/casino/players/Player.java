@@ -1,13 +1,15 @@
 package io.zipcoder.casino.players;
 
-public class Players {
+import io.zipcoder.casino.Interfaces.Igame;
+
+public class Player {
   private String name;
 
   public Player(String name){
     this.name = name;
   }
 
-  public void playGame(Game game){
+  public void playGame(Igame game){
 
   }
 
