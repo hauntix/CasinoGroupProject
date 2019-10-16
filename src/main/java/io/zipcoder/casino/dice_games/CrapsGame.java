@@ -21,4 +21,22 @@ public class CrapsGame extends DiceGame{
 
 		return sum;
 	}
+
+	@Override
+	public boolean rollDice() {
+		int sum = sumOfDice();
+
+		if (sum == 7 || sum == 11)
+			return true;
+		if(sum ==2 || sum == 3 || sum == 12)
+			return false;
+
+		while (true) {
+			int y = sumOfDice();
+			if (y ==7)
+				return false;
+			if (y == sum)
+				return true;
+		}
+	}
 }
