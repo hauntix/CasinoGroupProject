@@ -6,4 +6,8 @@ public class DiceGame {
 	public void setNumOfDice(int numOfDice) {
 		this.numOfDice = numOfDice;
 	}
+
+	public int getNumOfDice() {
+		return numOfDice;
+	}
 }
