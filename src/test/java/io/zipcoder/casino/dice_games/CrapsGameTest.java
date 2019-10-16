@@ -8,13 +8,8 @@ public class CrapsGameTest {
 
 	@Test
 	public void sumOfDice() {
-		CrapsGame game = new CrapsGame();
+		CrapsGame game = new CrapsGame(4);
 
-		for (int i = 0; i < 10; i++) {
-			if(game.rollDice())
-				System.out.println("win");
-			else
-				System.out.println("loss");
-		}
+
 	}
 }
