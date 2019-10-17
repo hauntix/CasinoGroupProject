@@ -1,27 +1,24 @@
 package klondikeGame;
 
+import io.zipcoder.casino.Interfaces.Igamblinggame;
 import io.zipcoder.casino.dice_games.DiceGame;
-import io.zipcoder.casino.players.Player;
+import io.zipcoder.casino.players.GamblingPlayer;
 
 import java.util.*;
 
-public class Klondike extends DiceGame {
+public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer {
 
   Klondike() {
     this.setNumOfDice(5);
   }
 
-  Player player = new Player("Bond, James Bond");
-  boolean bankerWins = true;
-  boolean playerWins = true;
-  List<Integer> list = new ArrayList<Integer>();
+  int placeBet = GamblingPlayer.totalAmount;
   int diceRange = 6 - 1 + 1;
   Random random = new Random();
 
 
   public int bankerRoll() {
     int bankerSum = 0;
-
     for (int i = 0; i < this.getNumOfDice(); i++) {
       bankerSum += random.nextInt(diceRange);
     }
@@ -30,21 +27,59 @@ public class Klondike extends DiceGame {
 
   public int playerRoll() {
     int playerSum = 0;
-
     for (int i = 0; i < this.getNumOfDice(); i++) {
       playerSum += random.nextInt(diceRange);
     }
     return playerSum;
   }
 
-  public boolean winner() {
-    if (playerRoll() == bankerRoll()) {
-      return bankerWins;
-    } else if (playerRoll() < bankerRoll()) {
-      return playerWins;
-    } else if (playerRoll() > bankerRoll()) {
-      return playerWins;
+  public String play() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Place bet on Win or Lose");
+    String userMarkedBet = scanner.nextLine();
+    System.out.println("You placed a bet on " + userMarkedBet);
+    System.out.println("Place your bet amount");
+    int userBetAmount = scanner.nextInt();
+    System.out.println("You bet " + userBetAmount);
+
+
+    while (totalAmount > placeBet){
+      if (totalAmount > userBetAmount){
+        return "Let's begin";
+      } else {
+        return "You don't have enough money cuz";
+      }
     }
+
+    String bankerWins = "Nope, try again, you lost " + userBetAmount + "and have " + totalAmount + " left.";
+    String playerWins = "Congrats you won "  + (userBetAmount + totalAmount);
+
+
+    if (userMarkedBet.contains("Win") && playerRoll() > bankerRoll()) {
+      return playerWins;
+    } else if(userMarkedBet.contains("Win") && playerRoll() < bankerRoll()){
+      return bankerWins;
+    } else if (userMarkedBet.contains("Lose") && playerRoll() < bankerRoll()) {
+      return playerWins;
+    } else if (userMarkedBet.contains("Lose") && playerRoll() > bankerRoll()){
+      return bankerWins;
+    } else if (playerRoll() == bankerRoll() ) {
+      return bankerWins;
+    } else {
+      return "Thanks for playing";
+    }
+
     return bankerWins;
+
+
+  }
+
+  public void placeBet(int betAmount) {
+
+  }
+
+  public void nextTurn() {
+
+
   }
 }
