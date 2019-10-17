@@ -9,9 +9,14 @@ import java.util.Random;
 public class CrapsGame extends DiceGame{
 	private ArrayList<CrapsPlayer> crapsPlayers = new ArrayList<CrapsPlayer>();
 	private int wagePool;
+	private int startAmount = 0;
 
 	public CrapsGame() {
 		this.setNumOfDice(2);
+	}
+
+	public CrapsGame(int startingAmount){
+		this.startAmount = startingAmount;
 	}
 
 	private int sumOfDice() {
@@ -38,6 +43,11 @@ public class CrapsGame extends DiceGame{
 		}
 	}
 
+
+	public int getPlayerBalance (int player) {
+		return crapsPlayers.get(player).getTotalAmount();
+	}
+
 	private void playerWon(int player) {
 		int winnings = (int) (wagePool * 1.5);
 		this.crapsPlayers.get(player).increaseAmount(winnings);
@@ -52,8 +62,12 @@ public class CrapsGame extends DiceGame{
 
 		Console console = new Console(System.in, System.out);
 		String name = console.getStringInput("What's player 1's name? ");
-		int startAmount = console.getIntegerInput("How much money is " + name + " starting with? ");
-		crapsPlayers.add(new CrapsPlayer(name, startAmount));
+		if(startAmount == 0) {
+			int startAmount = console.getIntegerInput("How much money is " + name + " starting with? ");
+			crapsPlayers.add(new CrapsPlayer(name, startAmount));
+		} else {
+			crapsPlayers.add(new CrapsPlayer(name, this.startAmount));
+		}
 
 		while (keepPlaying) {
 			int wager = console.getIntegerInput("How much would " + name + " like to wager? (Current balance: $" + crapsPlayers.get(0).getTotalAmount() + ")");

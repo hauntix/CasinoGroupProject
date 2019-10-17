@@ -69,8 +69,6 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
       return "Thanks for playing";
     }
 
-    return bankerWins;
-
 
   }
 
