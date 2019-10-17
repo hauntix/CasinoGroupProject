@@ -45,6 +45,6 @@ public class Klondike extends DiceGame {
     } else if (playerRoll() > bankerRoll()) {
       return playerWins;
     }
-    return bankerWins
+    return bankerWins;
   }
 }
