@@ -33,7 +33,8 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
     return playerSum;
   }
 
-  public String play() {
+  @Override
+  public void startGame() {
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("Place bet on Win or Lose");
@@ -47,7 +48,7 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
     while (playerBalance > 0) {
       System.out.println("You have " + playerBalance + ". Let's begin.");
       if (playerBet > playerBalance) {
-        return "Get tf outta here broke azz";
+        System.out.println("Get tf outta here broke azz");
         break;
       }
 
@@ -57,27 +58,27 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
       String playerLoses = "Nope, try again, you lost " + userBetAmount + "and have " +
         (GamblingPlayer.totalAmount - userBetAmount) + " left.";
 
-      while (true){
-        if (continuePlaying.contains("2")){
+      while (true) {
+        if (continuePlaying.contains("2")) {
 
-      } else if (userMarkedBet.contains("Win") && playerRoll() > bankerRoll()) {
-        return playerWins + continuePlaying;
-      } else if (userMarkedBet.contains("Win") && playerRoll() < bankerRoll()) {
-        return playerLoses + continuePlaying;
-      } else if (userMarkedBet.contains("Lose") && playerRoll() < bankerRoll()) {
-        return playerWins + continuePlaying;
-      } else if (userMarkedBet.contains("Lose") && playerRoll() > bankerRoll()) {
-        return playerLoses + continuePlaying;
-      } else if (playerRoll() == bankerRoll()) {
-        return playerLoses + continuePlaying;
-      } else if (continuePlaying.contains("2")) {
-        return "Thanks for playing! Please check out our other games around the casino and enjoy our speciality juices!";
-      } else {
-          return "You don't have enough money cuz";
+        } else if (userMarkedBet.contains("Win") && playerRoll() > bankerRoll()) {
+          System.out.println(playerWins + continuePlaying);
+        } else if (userMarkedBet.contains("Win") && playerRoll() < bankerRoll()) {
+          System.out.println(playerLoses + continuePlaying);
+        } else if (userMarkedBet.contains("Lose") && playerRoll() < bankerRoll()) {
+          System.out.println(playerWins + continuePlaying);
+        } else if (userMarkedBet.contains("Lose") && playerRoll() > bankerRoll()) {
+          System.out.println(playerLoses + continuePlaying);
+        } else if (playerRoll() == bankerRoll()) {
+          System.out.println(playerLoses + continuePlaying);
+        } else if (continuePlaying.contains("2")) {
+          System.out.println("Thanks for playing! Please check out our other games around the casino and enjoy our speciality juices!");
+        } else {
+          System.out.println("You don't have enough money cuz");
         }
       }
-    return "Thank you come again!";
     }
+  }
 
 
 
