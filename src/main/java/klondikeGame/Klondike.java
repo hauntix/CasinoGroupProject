@@ -47,7 +47,7 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
 
     while (playerBalance > 0) {
       System.out.println("You have " + playerBalance + ". Let's begin.");
-      if (playerBet > playerBalance) {
+      if (userBetAmount > ) {
         System.out.println("Get tf outta here broke azz");
         break;
       }
@@ -59,8 +59,9 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
         (GamblingPlayer.totalAmount - userBetAmount) + " left.";
 
       while (true) {
-        if (continuePlaying.contains("2")) {
 
+        if (continuePlaying.contains("2")) {
+          break;
         } else if (userMarkedBet.contains("Win") && playerRoll() > bankerRoll()) {
           System.out.println(playerWins + continuePlaying);
         } else if (userMarkedBet.contains("Win") && playerRoll() < bankerRoll()) {
