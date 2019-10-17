@@ -1,12 +1,13 @@
 package io.zipcoder.casino;
 
 
-import klondikeGame.Klondike;
+import io.zipcoder.casino.dice_games.CrapsGame;
 
 public class CasinoTest {
+	public static void main(String[] args) {
+		CrapsGame cGame = new CrapsGame();
 
-  public static void main(String[] args) {
-    Klondike klondike = new Klondike();
-    klondike.play();
-  }
+		cGame.startGame();
+
+	}
 }
