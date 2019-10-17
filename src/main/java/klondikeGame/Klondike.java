@@ -69,6 +69,7 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
       return "Thanks for playing";
     }
 
+
   }
 
   public void placeBet(int betAmount) {
@@ -76,6 +77,7 @@ public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer 
   }
 
   public void nextTurn() {
+
 
   }
 }
