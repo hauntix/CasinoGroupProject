@@ -3,6 +3,7 @@ package io.zipcoder.casino;
 
 import io.zipcoder.casino.card_games.BlackJack;
 import io.zipcoder.casino.card_games.goFish.GoFish;
+import io.zipcoder.casino.dice_games.ChicagoGame;
 import io.zipcoder.casino.dice_games.CrapsGame;
 import io.zipcoder.casino.utilities.Console;
 
@@ -46,7 +47,9 @@ public class Casino {
                         break;
 
                     case 3:
-
+                        ChicagoGame chicago = new ChicagoGame();
+                        chicago.startGame();
+                        break;
 
                     case 4:
                         GoFish goFish = new GoFish();

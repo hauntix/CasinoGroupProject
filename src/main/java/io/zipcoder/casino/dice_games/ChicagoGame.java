@@ -43,7 +43,7 @@ public class ChicagoGame extends DiceGame {
 
       while (continuePlaying) {
 
-        if (sum == gameRounds.length) {
+        if (sum == y) {
           playerScore++;
         } else {
           continue;
