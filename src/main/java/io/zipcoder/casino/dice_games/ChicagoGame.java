@@ -74,7 +74,7 @@ public class ChicagoGame extends DiceGame {
 
         } else {
           System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + bankerRoll());
-          console.println("You lost this round, no point eared.");
+          console.println("You lost this round, no point earned.");
           console.getStringInput("Press Enter for Next Round...");
         }
 
