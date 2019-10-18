@@ -1,13 +1,16 @@
 package io.zipcoder.casino;
 
 
+import io.zipcoder.casino.dice_games.ChicagoGame;
 import io.zipcoder.casino.dice_games.CrapsGame;
 
 public class CasinoTest {
 	public static void main(String[] args) {
-		CrapsGame cGame = new CrapsGame();
+    ChicagoGame chicagoGame = new ChicagoGame();
+    chicagoGame.startGame();
 
-		cGame.startGame();
+//    CrapsGame crapsGame = new CrapsGame();
+//    crapsGame.startGame();
 
 	}
 }

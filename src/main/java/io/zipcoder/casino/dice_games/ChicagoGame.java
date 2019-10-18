@@ -4,6 +4,8 @@ import io.zipcoder.casino.players.ChicagoPlayers;
 import io.zipcoder.casino.utilities.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class ChicagoGame extends DiceGame {
@@ -23,43 +25,67 @@ public class ChicagoGame extends DiceGame {
     for (int i = 0; i < this.getNumOfDice(); i++) {
       sum += random.nextInt(range) + 1;
     }
-    return sum;
+      return sum;
   }
 
 
   int[] gameRounds = {2,3,4,5,6,7,8,9,10,11,12};
 
-
-  @Override
   public void startGame() {
 
 
     boolean continuePlaying = true;
-    int sum = sumOfDice();
     int playerScore = 0;
     Console console = new Console(System.in, System.out);
 
-    for (int y = 2; y <= gameRounds.length; y++) {
+    System.out.println("Welcome to the game Chicago, let's begin!");
+    int startGame = console.getIntegerInput("Ready to start? Type 1 for Yes and 2 for No");
+    if (startGame == 1){
+      System.out.println("Starting game now!");
+    } else {
+      System.out.println("See you den hoe");
+      continuePlaying = false;
+    }
 
-      while (continuePlaying) {
+    while (continuePlaying) {
 
-        if (sum == gameRounds.length) {
+
+      for (int y = 2; y <= gameRounds.length; y++) {
+
+        System.out.println("Round: " + y);
+
+        if (sumOfDice() == gameRounds[y - 2]) {
           playerScore++;
+          System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + gameRounds[y - 2]);
+          console.println("Congrats you won a point!");
+          console.getStringInput("Press Enter for Next Round...");
+
         } else {
-          continue;
+          System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + gameRounds[y - 2]);
+          console.println("You lost this round, no point eared.");
+          console.getStringInput("Press Enter for Next Round...");
         }
 
-        int quitGame = console.getIntegerInput("Would you like to continue playing? Type 1 for Yes and 2 for No");
-        if (quitGame == 2){
-          continuePlaying = false;
+
+        if (y == 11){
+          int endOfGame = console.getIntegerInput("The game reached 11 rounds, you earned " + playerScore +
+            " points. Would you like to play another game? Type 1 for Yes and 2 for No");
+          if (endOfGame == 2){
+            System.out.println("Thanks for playing! You scored " + playerScore +
+              " points. Feel free to check out some other games!");
+            continuePlaying = false;
+          } else {
+            startGame();
+          }
+        }
+
+
+
         }
       }
     }
   }
 
-
-
-}
 
 
 /* working through logic before
