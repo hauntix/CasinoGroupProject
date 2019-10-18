@@ -1,6 +1,6 @@
 package io.zipcoder.casino.players;
 
-import io.zipcoder.casino.Interfaces.Igame;
+import io.zipcoder.casino.Interfaces.IGame;
 
 public class Player {
   private String name;
@@ -9,7 +9,7 @@ public class Player {
     this.name = name;
   }
 
-  public void playGame(Igame game){
+  public void playGame(IGame game){
 
   }
 

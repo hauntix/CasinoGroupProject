@@ -23,6 +23,7 @@ public class Casino {
                                 "Choices:\n\t" +
                                 "(1)\tBlackJack\n\t" +
                                 "(2)\tCraps\n\t" +
+                                "(3)\tChicago\n\t" +
                                 "(4)\tGo Fish [free to play]\n\t" +
                                 "(0)\tLeave");
 
@@ -43,6 +44,9 @@ public class Casino {
                         craps.startGame();
                         playerBalance = craps.getPlayerBalance(0);
                         break;
+
+                    case 3:
+
 
                     case 4:
                         GoFish goFish = new GoFish();

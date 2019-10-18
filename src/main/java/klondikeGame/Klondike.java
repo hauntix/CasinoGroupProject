@@ -1,12 +1,12 @@
 package klondikeGame;
 
-import io.zipcoder.casino.Interfaces.Igamblinggame;
+import io.zipcoder.casino.Interfaces.IGamblingGame;
 import io.zipcoder.casino.dice_games.DiceGame;
 import io.zipcoder.casino.players.GamblingPlayer;
 
 import java.util.*;
 
-public class Klondike extends DiceGame implements Igamblinggame, GamblingPlayer {
+public class Klondike extends DiceGame implements IGamblingGame, GamblingPlayer {
 
   Klondike() {
     this.setNumOfDice(5);
