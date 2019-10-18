@@ -3,6 +3,7 @@ package io.zipcoder.casino;
 
 import io.zipcoder.casino.card_games.BlackJack;
 import io.zipcoder.casino.card_games.goFish.GoFish;
+import io.zipcoder.casino.dice_games.ChicagoGame;
 import io.zipcoder.casino.dice_games.CrapsGame;
 import io.zipcoder.casino.utilities.Console;
 
@@ -23,6 +24,7 @@ public class Casino {
                                 "Choices:\n\t" +
                                 "(1)\tBlackJack\n\t" +
                                 "(2)\tCraps\n\t" +
+                                "(3)\tChicago\n\t" +
                                 "(4)\tGo Fish [free to play]\n\t" +
                                 "(0)\tLeave");
 
@@ -42,6 +44,11 @@ public class Casino {
                         CrapsGame craps = new CrapsGame(playerBalance);
                         craps.startGame();
                         playerBalance = craps.getPlayerBalance(0);
+                        break;
+
+                    case 3:
+                        ChicagoGame chicago = new ChicagoGame();
+                        chicago.startGame();
                         break;
 
                     case 4:

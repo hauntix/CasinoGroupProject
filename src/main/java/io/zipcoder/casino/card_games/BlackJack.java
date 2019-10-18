@@ -1,12 +1,12 @@
 package io.zipcoder.casino.card_games;
 
-import io.zipcoder.casino.Interfaces.Igamblinggame;
+import io.zipcoder.casino.Interfaces.IGamblingGame;
 import io.zipcoder.casino.players.GamblingPlayer;
 
 import java.util.Scanner;
 
 
-public class BlackJack extends CardGame implements Igamblinggame, GamblingPlayer {
+public class BlackJack extends CardGame implements IGamblingGame, GamblingPlayer {
     private int playerBalance;
 
     public BlackJack(int startingAmount){

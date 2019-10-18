@@ -19,12 +19,12 @@ public class GoFishDeck {
 		for (int i = 1; i <= 4; i++) {
 			for (int j = 1; j <= 13; j++) {
 				card = new GoFishCard(j, i);
-				this.insertCard(card);
+				this.draw(card);
 			}
 		}
 	}
 
-	void insertCard(GoFishCard card) {
+	void draw(GoFishCard card) {
 		if (_count == _hand.length) {
 			GoFishCard[] _temp = new GoFishCard[_count + Storage];
 			System.arraycopy(_hand, 0, _temp, 0, _hand.length);
@@ -34,7 +34,7 @@ public class GoFishDeck {
 		_count++;
 	}
 
-	GoFishCard deleteValue(int value) {
+	GoFishCard grabCard(int value) {
 		GoFishCard temp;
 		GoFishCard deleted;
 		for (int i = 0; i < _count; i++) {
@@ -49,7 +49,7 @@ public class GoFishDeck {
 		return null;
 	}
 
-	GoFishCard deleteAnyCard() {
+	GoFishCard grabRandomCard() {
 		if (_count == 0) {
 			return null;
 		} else {

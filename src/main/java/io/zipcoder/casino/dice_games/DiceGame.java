@@ -1,8 +1,8 @@
 package io.zipcoder.casino.dice_games;
 
-import io.zipcoder.casino.Interfaces.Igame;
+import io.zipcoder.casino.Interfaces.IGame;
 
-public class DiceGame implements Igame {
+public class DiceGame implements IGame {
 	private int numOfPlayers = 2;
 	private int numOfDice = 2;
 

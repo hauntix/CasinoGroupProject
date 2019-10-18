@@ -4,9 +4,7 @@ import io.zipcoder.casino.players.Player;
 
 import java.util.ArrayList;
 
-public interface Igame {
+public interface IGame {
     ArrayList<Player> playerList = new ArrayList<Player>();
-    boolean isWin = false;
     void startGame();
-    void endGame();
 }

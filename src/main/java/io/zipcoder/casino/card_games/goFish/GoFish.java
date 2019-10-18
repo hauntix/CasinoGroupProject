@@ -1,20 +1,20 @@
 package io.zipcoder.casino.card_games.goFish;
 
-import io.zipcoder.casino.Interfaces.Igame;
+import io.zipcoder.casino.Interfaces.IGame;
 import io.zipcoder.casino.utilities.Console;
 
 
-public class GoFish implements Igame {
+public class GoFish implements IGame {
 	private Console console = new Console(System.in, System.out);
-	private GoFishDeck stock;
+	private GoFishDeck stockPile;
 	private GoFishDeck userHand;
 	private GoFishDeck cpHand;
 	private boolean win;
 	private int userBooks, cpBooks;
 
 	public GoFish() {
-		stock = new GoFishDeck();
-		stock.fillDeck();
+		stockPile = new GoFishDeck();
+		stockPile.fillDeck();
 		userHand = new GoFishDeck();
 		cpHand = new GoFishDeck();
 		win = false;
@@ -23,8 +23,8 @@ public class GoFish implements Igame {
 
 	private void initializeStartingHands() {
 		for (int i = 0; i < 7; i++) {
-			userHand.insertCard(stock.deleteAnyCard());
-			cpHand.insertCard(stock.deleteAnyCard());
+			userHand.draw(stockPile.grabRandomCard());
+			cpHand.draw(stockPile.grabRandomCard());
 		}
 	}
 
@@ -64,16 +64,16 @@ public class GoFish implements Igame {
 				int hits = cpHand.getCount(value);
 				if (hits == 0) {
 					 console.println("Go Fish!");
-					drawnCard = stock.deleteAnyCard();
+					drawnCard = stockPile.grabRandomCard();
 					if (drawnCard.getValue() == value) {
-						userHand.insertCard(drawnCard);
+						userHand.draw(drawnCard);
 						retryUser = true;
 						 console.println("Drawn Card: " + drawnCard);
 						 console.println("Lucky Draw! Go again.");
 						pause();
 					} else {
 						 console.println("Drawn Card: " + drawnCard);
-						userHand.insertCard(drawnCard);
+						userHand.draw(drawnCard);
 						pause();
 					}
 					int countAfterGoFish = userHand.getCount(drawnCard.getValue());
@@ -85,7 +85,7 @@ public class GoFish implements Igame {
 								"And the computer has : " + cpBooks + " Books");
 						pause();
 						for (int i = 0; i < 4; i++) {
-							userHand.deleteValue(drawnCard.getValue());
+							userHand.grabCard(drawnCard.getValue());
 						}
 					}
 					if (retryUser) {
@@ -93,7 +93,7 @@ public class GoFish implements Igame {
 					}
 				} else if (hits >= 1) {
 					for (int i = 0; i < hits; i++) {
-						userHand.insertCard(cpHand.deleteValue(value));
+						userHand.draw(cpHand.grabCard(value));
 					}
 					 console.println("The Computer had " + hits + " of those cards");
 					retryUser = false;
@@ -107,7 +107,7 @@ public class GoFish implements Igame {
 								"The computer currently has : " + cpBooks + " Books");
 						pause();
 						for (int i = 0; i < 4; i++) {
-							userHand.deleteValue(value);
+							userHand.grabCard(value);
 						}
 					}
 
@@ -122,16 +122,16 @@ public class GoFish implements Igame {
 			retryComp = false;
 			if (!win) {
 				GoFishCard drawnCardCp;
-				GoFishCard random = cpHand.deleteAnyCard(); //Randomly pulls asking card from computers hand
-				cpHand.insertCard(random);
+				GoFishCard random = cpHand.grabRandomCard(); //Randomly pulls asking card from computers hand
+				cpHand.draw(random);
 				int Value = random.getValue();
 				int cpHits = userHand.getCount(Value);
 				if (cpHits == 0) {
-					drawnCardCp = stock.deleteAnyCard();
+					drawnCardCp = stockPile.grabRandomCard();
 
 					//Draw same card as asked from stock deck
 					if (drawnCardCp.getValue() == Value) {
-						cpHand.insertCard(drawnCardCp);
+						cpHand.draw(drawnCardCp);
 						retryComp = true;
 						console.println("Lucky draw for the computer!\n" +
 								"They go again.");
@@ -139,7 +139,7 @@ public class GoFish implements Igame {
 					} else {
 						 console.println("The computer guessed Wrong..\n" +
 								"Your turn.");
-						cpHand.insertCard(drawnCardCp);
+						cpHand.draw(drawnCardCp);
 						pause();
 					}
 					int cpCountAfterGoFish = cpHand.getCount(drawnCardCp.getValue());
@@ -152,7 +152,7 @@ public class GoFish implements Igame {
 								"You currently have : " + userBooks + " Books");
 						pause();
 						for (int i = 0; i < 4; i++) {
-							cpHand.deleteValue(drawnCardCp.getValue());
+							cpHand.grabCard(drawnCardCp.getValue());
 						}
 					}
 					if (retryComp) {
@@ -160,7 +160,7 @@ public class GoFish implements Igame {
 					}
 				} else if (cpHits >= 1) {
 					for (int i = 0; i < cpHits; i++) {
-						cpHand.insertCard(userHand.deleteValue(Value));
+						cpHand.draw(userHand.grabCard(Value));
 					}
 					 console.println("The computer took " + cpHits + " of your cards!");
 					retryComp = false;
@@ -174,7 +174,7 @@ public class GoFish implements Igame {
 								"You currently have : " + userBooks + " Books");
 						pause();
 						for (int i = 0; i < 4; i++) {
-							cpHand.deleteValue(Value);
+							cpHand.grabCard(Value);
 						}
 					}
 				}
@@ -183,8 +183,10 @@ public class GoFish implements Igame {
 	}
 
 	private void checkForGameOver() {
-		win = (stock.getSize() == 0 || userHand.getSize() == 0
-				|| cpHand.getSize() == 0);
+
+		win = ( stockPile.getSize() == 0 ||
+				userHand.getSize() == 0 ||
+				cpHand.getSize() == 0 );
 	}
 
 	private void displayWinner() {
@@ -223,7 +225,4 @@ public class GoFish implements Igame {
 		displayWinner();
 	}
 
-	public void endGame() {
-
-	}
 }
