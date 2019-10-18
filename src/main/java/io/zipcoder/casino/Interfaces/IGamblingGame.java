@@ -4,8 +4,7 @@ import io.zipcoder.casino.players.GamblingPlayer;
 
 import java.util.ArrayList;
 
-public interface Igamblinggame extends Igame {
+public interface IGamblingGame extends IGame {
     ArrayList<GamblingPlayer> players = new ArrayList<GamblingPlayer>();
-
 
 }
