@@ -29,6 +29,18 @@ public class ChicagoGame extends DiceGame {
   }
 
 
+
+  private int bankerRoll() {
+    int sum = 0;
+    Random random = new Random();
+    int range = 6-1 +1;
+    for (int i = 0; i < this.getNumOfDice(); i++) {
+      sum += random.nextInt(range) + 1;
+    }
+    return sum;
+  }
+
+
   int[] gameRounds = {2,3,4,5,6,7,8,9,10,11,12};
 
   public void startGame() {
@@ -56,13 +68,13 @@ public class ChicagoGame extends DiceGame {
 
         if (sumOfDice() == gameRounds[y - 2]) {
           playerScore++;
-          System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + gameRounds[y - 2]);
+          System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + bankerRoll());
           console.println("Congrats you won a point!");
           console.getStringInput("Press Enter for Next Round...");
 
         } else {
-          System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + gameRounds[y - 2]);
-          console.println("You lost this round, no point eared.");
+          System.out.println("You rolled a " + sumOfDice() + " " + "\n" + "Dealer rolled a " + bankerRoll());
+          console.println("You lost this round, no point earned.");
           console.getStringInput("Press Enter for Next Round...");
         }
 
